@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="h__top">
                         <div class="logo">
-                            <a href="#"><img src="dist/images/logo.png" alt=""></a>
+                            <a href="/"><img src="dist/images/logo.png" alt=""></a>
                         </div>
                         <div class="h__right">
                             <div class="search-bar">
@@ -42,9 +42,25 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="user">
-                                        <a href="#">Đăng ký</a><span>/</span><a href="#">Đăng nhập</a>
-                                    </div>
+                                    @if(auth()->check())
+                                        <div class="header__user">
+                                            <div class="user__item">
+                                                <div class="user__img">
+                                                    <a href=""><img src="dist/images/user.svg" alt="user"></a>
+                                                </div>
+                                                <div class="user__label">
+                                                    <a href="">
+                                                        <span>Xin chào!</span>
+                                                        <h4>{{ auth()->user()->name }}</h4>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="user">
+                                            <a href="/regíter">Đăng ký</a><span>/</span><a href="/login">Đăng nhập</a>
+                                        </div>
+                                     @endif
                                 </div>
                             </div>
                         </div>

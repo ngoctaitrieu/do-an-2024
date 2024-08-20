@@ -28,6 +28,9 @@
 <script src="{{ asset('dist/lib/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('dist/lib/swiper/swiper-bundle.min.js') }}"></script>
 <script src="{{ asset('dist/lib/slick/slick.min.js') }}"></script>
+<script src="{{ asset('dist/js/jquery.validate.js') }}"></script>
+<script src="{{ asset('dist/js/sweetalert2.js') }}"></script>
 <script src="{{ asset('dist/js/custom.js') }}"></script>
+@yield('script')
 </body>
 </html>

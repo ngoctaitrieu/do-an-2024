@@ -17,11 +17,21 @@
                                 <h2>Đăng nhập</h2>
                             </div>
                             <div class="login-input">
-                                <input type="text" name="name" id="name" placeholder="Họ và tên *">
-                                <input type="text" name="email" id="email" placeholder="Email *">
-                                <input type="text" name="phone" id="phone" placeholder="Số điện thoại *">
-                                <input type="password" name="password" id="password" placeholder="Mật khẩu *">
-                                <input type="password" name="password_confirmation" id="" placeholder="Nhập lại mật khẩu *">
+                                <div class="form-input">
+                                    <input type="text" name="name" id="name" placeholder="Họ và tên *">
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="email" id="email" placeholder="Email *">
+                                </div>
+                                <div class="form-input">
+                                    <input type="text" name="phone" id="phone" placeholder="Số điện thoại *">
+                                </div>
+                                <div class="form-input">
+                                    <input type="password" name="password" id="password" placeholder="Mật khẩu *">
+                                </div>
+                                <div class="form-input">
+                                    <input type="password" name="password_confirmation" id="" placeholder="Nhập lại mật khẩu *">
+                                </div>
                                 <button type="submit">Đăng ký</button>
                             </div>
                         </div>

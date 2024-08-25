@@ -83,10 +83,11 @@ jQuery(document).ready(function () {
 
                 const now = new Date().getTime(),
                     distance = countDown - now;
-
-                document.getElementById("hours").innerHTML = Math.floor((distance % (day)) / (hour)),
-                    document.getElementById("minutes").innerHTML = Math.floor((distance % (hour)) / (minute)),
-                    document.getElementById("seconds").innerHTML = Math.floor((distance % (minute)) / second);
+                if(document.getElementById("hours")) {
+                    document.getElementById("hours").innerHTML = Math.floor((distance % (day)) / (hour)),
+                        document.getElementById("minutes").innerHTML = Math.floor((distance % (hour)) / (minute)),
+                        document.getElementById("seconds").innerHTML = Math.floor((distance % (minute)) / second);
+                }
             }, 0)
     }());
 });
@@ -137,22 +138,22 @@ jQuery(document).ready(function () {
     thumbs.controller.control = slider;
 });
 
-jQuery(document).ready(function ($) {
-    $('.minus').click(function () {
-        var $input = $(this).parent().find('input');
-        var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 1 : count;
-        $input.val(count);
-        $input.change();
-        return false;
-    });
-    $('.plus').click(function () {
-        var $input = $(this).parent().find('input');
-        $input.val(parseInt($input.val()) + 1);
-        $input.change();
-        return false;
-    });
-});
+// jQuery(document).ready(function ($) {
+//     $('.minus').click(function () {
+//         var $input = $(this).parent().find('input');
+//         var count = parseInt($input.val()) - 1;
+//         count = count < 1 ? 1 : count;
+//         $input.val(count);
+//         $input.change();
+//         return false;
+//     });
+//     $('.plus').click(function () {
+//         var $input = $(this).parent().find('input');
+//         $input.val(parseInt($input.val()) + 1);
+//         $input.change();
+//         return false;
+//     });
+// });
 
 jQuery(document).ready(function ($) {
     var accToggles = document.getElementsByClassName('title-tab');

@@ -31,6 +31,19 @@
 <script src="{{ asset('dist/js/jquery.validate.js') }}"></script>
 <script src="{{ asset('dist/js/sweetalert2.js') }}"></script>
 <script src="{{ asset('dist/js/custom.js') }}"></script>
+<script>
+    // Show cart
+    showCartNumber();
+    function showCartNumber() {
+        let cart;
+        if(localStorage.getItem('cart')) {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        } else {
+            cart = [];
+        }
+        $('.qty__cart').text(cart.length);
+    }
+</script>
 @yield('script')
 </body>
 </html>

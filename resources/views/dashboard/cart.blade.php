@@ -59,7 +59,7 @@
                                                         <div class="table-label">
                                                             <div class="del">
                                                                 <div class="del-check">
-                                                                    <input type="checkbox" name="check-all" id="check-all">
+                                                                    <input type="checkbox" name="check-all" id="check-all" checked>
                                                                     <label for="check-all">Tất cả sản phẩm</label>
                                                                 </div>
                                                             </div>
@@ -191,7 +191,7 @@
                     $('.cart-list').append('<div class="li-item">\n' +
 '                                                                <div class="col-first">\n' +
 '                                                                    <div class="del">\n' +
-'                                                                        <input type="checkbox" name="check" data-product-id="'+ item.product_id +'" data-product-variant-id="'+ item.product_variant_id +'">\n' +
+'                                                                        <input type="checkbox" name="check" checked data-product-id="'+ item.product_id +'" data-product-variant-id="'+ item.product_variant_id +'">\n' +
 '                                                                    </div>\n' +
 '                                                                    <div class="thumbnail">\n' +
 '                                                                        <div class="thumb">\n' +
@@ -316,6 +316,27 @@
                 customer_address : customer_address
             }));
             window.location.href = "{{ route('dashboard.confirm') }}";
+        });
+        $('input[type="checkbox"]').on('change', function () {
+            let cart = JSON.parse(localStorage.getItem('cart'));
+            if(!cart) {
+                return;
+            }
+            let orderSelectedProduct = $('input[name="check"]:checked').map(function () {
+                let product_id = parseInt($(this).attr('data-product-id'));
+                let product_variant_id = parseInt($(this).attr('data-product-variant-id'));
+                for(let i = 0; i < cart.length; i++) {
+                    if(cart[i].product_id === product_id && cart[i].product_variant_id === product_variant_id) {
+                        return cart[i];
+                    }
+                }
+            }).get();
+            let total = 0;
+            for(let item of orderSelectedProduct) {
+                total += (item.price * item.quantity);
+            }
+            $('.total-provisional').text(total.toLocaleString() + 'đ');
+            $('.total-final').text(total.toLocaleString() + 'đ');
         });
     </script>
 @endsection

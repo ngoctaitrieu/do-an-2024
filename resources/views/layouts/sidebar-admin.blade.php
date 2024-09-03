@@ -9,8 +9,40 @@
             <div class="link-level-0">
                 <div class="main-link">
                     <a href="{{ route('admin.index') }}">
-                        <span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>
+                        {{--<span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>--}}
                         <span>Quản lý sản phẩm</span>
+                    </a>
+                </div>
+                {{--<div class="link-level-1">--}}
+                    {{--<div class="item">--}}
+                        {{--<a href="">Quản lý danh mục</a>--}}
+                    {{--</div>--}}
+                    {{--<div class="item">--}}
+                        {{--<a href="">Quản lý biến thể</a>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            </div>
+            <div class="link-level-0">
+                <div class="main-link">
+                    <a href="{{ route('admin.category') }}">
+                        {{--<span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>--}}
+                        <span>Quản lý danh mục</span>
+                    </a>
+                </div>
+            </div>
+            <div class="link-level-0">
+                <div class="main-link">
+                    <a href="{{ route('admin.variants') }}">
+                        {{--<span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>--}}
+                        <span>Quản lý biến thể</span>
+                    </a>
+                </div>
+            </div>
+            <div class="link-level-0">
+                <div class="main-link">
+                    <a href="{{ route('admin.orders') }}">
+                        {{--<span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>--}}
+                        <span>Quản lý đơn hàng</span>
                     </a>
                 </div>
             </div>

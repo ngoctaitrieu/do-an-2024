@@ -4017,7 +4017,7 @@ main {
         margin-bottom: 15px;
 
         .list-star {
-          i {
+          .yellow {
             color: #ffc700;
           }
         }
@@ -4403,7 +4403,7 @@ main {
               gap: 15px;
               margin-bottom: 10px;
               .star {
-                i {
+                .yellow {
                   color: #ffc700;
                 }
               }
@@ -4466,7 +4466,7 @@ main {
         .star {
           margin-bottom: 20px;
           i {
-            color: #ffe053;
+            // color: #ffe053;
           }
         }
         form {
@@ -5468,7 +5468,7 @@ main {
         margin-top: 50px;
 
         .link-level-0 {
-          margin-bottom: 20px;
+          margin-bottom: 10px;
 
           .main-link {
             display: flex;
@@ -5491,6 +5491,21 @@ main {
                   width: 24px;
                   height: 24px;
                 }
+              }
+            }
+          }
+          .link-level-1 {
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            
+            .item {
+              a {
+                font-size: 14px;
+                line-height: 21px;
+                font-family: var(--f-medium);
+                color: var(--cl-black);
               }
             }
           }

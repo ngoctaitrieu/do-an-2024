@@ -77,6 +77,10 @@
                                                                         <strong>{{ $order->paymentMethodText($order['payment_method']) }}</strong>
                                                                     </li>
                                                                     <li>
+                                                                        <span>Tình trạng thanh toán:</span>
+                                                                        <strong>{{ $order->paymentStatusText($order['payment_status']) }}</strong>
+                                                                    </li>
+                                                                    <li>
                                                                         <span>Địa chỉ:</span>
                                                                         <strong>{{ $order['customer_address'] }}</strong>
                                                                     </li>

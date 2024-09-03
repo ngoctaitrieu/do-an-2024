@@ -53,6 +53,17 @@ class Order extends Model
         }
     }
 
+    public function paymentStatusText($payment_status)
+    {
+        if($payment_status == 1) {
+            return 'Chưa thanh toán';
+        } else if($payment_status == 2) {
+            return 'Đã thanh toán';
+        } else {
+            return 'Đã hủy';
+        }
+    }
+
     public function total($order_code)
     {
         return OrderDetail::orderTotal($order_code)->first();

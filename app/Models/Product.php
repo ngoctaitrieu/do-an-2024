@@ -28,6 +28,16 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'product_id');
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'product_id');
+    }
+
     public function scopeProductCategorySub($query, $category_sub) {
         return $query->whereIn('category_sub_id', $category_sub);
     }
@@ -49,5 +59,24 @@ class Product extends Model
             $query->orderBy('created_at', 'DESC');
         }
         return $query;
+    }
+
+    public function productReviews()
+    {
+        return $this->reviews();
+    }
+
+    public function userReviewed()
+    {
+        return $this->reviews()->whereExists(function ($query) {
+            $query->where('user_id', auth()->id());
+        });
+    }
+
+    public function userFavorited()
+    {
+        return $this->favorites()->whereExists(function ($query) {
+            $query->where('user_id', auth()->id());
+        });
     }
 }

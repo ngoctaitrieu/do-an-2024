@@ -3679,7 +3679,7 @@ main {
   gap: 25px;
   margin-bottom: 15px;
 }
-.ffc-detail-product .detai-product__content .single__description .rating .list-star i {
+.ffc-detail-product .detai-product__content .single__description .rating .list-star .yellow {
   color: #ffc700;
 }
 .ffc-detail-product .detai-product__content .single__description .rating .rating-text {
@@ -4021,7 +4021,7 @@ main {
   gap: 15px;
   margin-bottom: 10px;
 }
-.ffc-detail-product .detai-product__content .single-meta .comment .list-comment .list-comment__item .rate .star i {
+.ffc-detail-product .detai-product__content .single-meta .comment .list-comment .list-comment__item .rate .star .yellow {
   color: #ffc700;
 }
 .ffc-detail-product .detai-product__content .single-meta .comment .list-comment .list-comment__item .rate .date-time {
@@ -4072,9 +4072,6 @@ main {
 }
 .ffc-detail-product .detai-product__content .single-meta .write-comment .star {
   margin-bottom: 20px;
-}
-.ffc-detail-product .detai-product__content .single-meta .write-comment .star i {
-  color: #ffe053;
 }
 .ffc-detail-product .detai-product__content .single-meta .write-comment form textarea {
   width: 100%;
@@ -5096,7 +5093,7 @@ main {
   margin-top: 50px;
 }
 .ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0 .main-link {
   display: flex;
@@ -5120,6 +5117,18 @@ main {
 .ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0 .main-link a span img {
   width: 24px;
   height: 24px;
+}
+.ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0 .link-level-1 {
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0 .link-level-1 .item a {
+  font-size: 14px;
+  line-height: 21px;
+  font-family: var(--f-medium);
+  color: var(--cl-black);
 }
 .ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0.sidebar-active .main-link, .ffc-dashboard .main-nav .main-nav__inner .list-option .link-level-0:hover .main-link {
   background: rgba(255, 199, 0, 0.1019607843);

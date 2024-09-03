@@ -33,7 +33,7 @@
             </div>
             <div class="link-level-0">
                 <div class="main-link">
-                    <a href="#">
+                    <a href="{{ route('favorite.index') }}">
                         <span><img src="{{ asset('dist/images/i-4.svg') }}" alt="i-4"></span>
                         <span>Yêu thích</span>
                     </a>

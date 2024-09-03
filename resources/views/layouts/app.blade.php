@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="{{ asset('dist/images/logo.png') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -43,6 +43,30 @@
         }
         $('.qty__cart').text(cart.length);
     }
+    $('body').on("click", '.add-to-favorite', function () {
+       let product_id = $(this).attr('data-id');
+       if($(this).hasClass('user-favorited')) {
+           $(this).removeClass('user-favorited');
+       } else {
+           $(this).addClass('user-favorited');
+       }
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            cache: false,
+            url: '{{ route('favorite.create') }}',
+            data: {
+                product_id : product_id,
+                "_token": "{{ csrf_token() }}",
+            },
+            beforeSend: function() {
+
+            },
+            success: function(response) {
+
+            }
+        });
+    });
 </script>
 @yield('script')
 </body>

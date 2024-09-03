@@ -9,6 +9,8 @@ use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\inc\lib\HMACSignature;
+use App\Http\inc\lib\MessageBuilder;
 
 class DashboardController extends Controller
 {
@@ -23,6 +25,37 @@ class DashboardController extends Controller
 
     public function confirm() {
         return view('dashboard.confirm');
+    }
+    // Lấy link thanh toán online
+    public function getPaymentLink($invoice, $amount, $description) {
+        $http = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https://' : 'http://';
+        $backUrl = "$http$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $returnUrl = route('dashboard.success');
+        $lang = 'vi';
+        $time = time();
+        $data = array(
+            'merchantKey' => config('variable.MERCHANT_KEY'),
+            'time' => $time,
+            'invoice_no' => $invoice,
+            'amount' => $amount,
+            'description' => $description,
+            'back_url' => $backUrl,
+            'return_url' => $returnUrl,
+            'lang' => $lang,
+        );
+        $message = MessageBuilder::instance()
+            ->with($time, config('variable.END_POINT') . '/payments/create', 'POST')
+            ->withParams($data)
+            ->build();
+        $hmacs = new HMACSignature();
+        $signature = $hmacs->sign($message, config('variable.MERCHANT_SECRET_KEY'));
+        $httpData = [
+            'baseEncode' => base64_encode(json_encode($data, JSON_UNESCAPED_UNICODE)),
+            'signature' => $signature,
+        ];
+        $redirectUrl = config('variable.END_POINT') . '/portal?' . http_build_query($httpData);
+        //    return header('Location: ' . $redirectUrl);
+        return $redirectUrl;
     }
 
     public function order(Request $request) {
@@ -88,20 +121,80 @@ class DashboardController extends Controller
                 'price' => (float)$product['price']
             ]);
         }
-        return response()->json([
-            'status' => 1,
-            'message' => 'Đặt hàng thành công.'
-        ]);
+        if($payment_method == 2) {
+            $payment_link = $this->getPaymentLink(strtoupper($order_code), $total, 'FangFangChoice');
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đặt hàng thành công.',
+                'payment_link' => $payment_link
+            ]);
+        } else {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Đặt hàng thành công.'
+            ]);
+        }
     }
-
-    public function success()
+    // Giải mã kết quả
+    public function urlSafeB64encode($string)
     {
-        return view('dashboard.success');
+        $remainder = \strlen($string) % 4;
+        if ($remainder) {
+            $padlen = 4 - $remainder;
+            $string .= \str_repeat('=', $padlen);
+        }
+        return \base64_decode(\strtr($string, '-_', '+/'));
+    }
+    // Check sum | Kiểm tra dữ liệu có hợp lệ hay không
+    public function checkSum($result, $checksum) {
+        $hashChecksum = strtoupper(hash('sha256', $result. config('variable.CHECK_SUM_KEY')));
+        if($hashChecksum === $checksum){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    // Xử lý thông tin thanh toán trả về
+    public function processPaymentData($result) {
+        $data = $this->urlSafeB64encode($result);
+        $data = json_decode($data);
+//    $status = $data->status;
+        return $data;
+    }
+    public function success(Request $request)
+    {
+        $data = $this->processPaymentData($request['result']);
+        // Kiểm tra xem có tồn tại mã đơn hàng hay không
+        $order = Order::where('order_code', $data->invoice_no)->first();
+//        dd($order);
+        if(!$order['order_code']) {
+            return view('dashboard.success');
+        }
+        if($data->status == 5) {
+            $order->update([
+                'payment_status' => 2
+            ]);
+            return view('dashboard.success', [
+                'title' => 'Thanh toán thành công',
+                'content' => 'Đơn hàng của bạn đã được đặt thành công, quá trình giao hàng sẽ được cập nhật liên
+                                        tục trên hệ thống, bạn vui lòng kiểm tra thường xuyên để nhận hàng sớm nhất có thể'
+            ]);
+        } elseif($data->status == 8 || $data->status == 6 || $data->status == 15) {
+            $order->update([
+                'payment_status' => 3
+            ]);
+            return view('dashboard.success', [
+                'title' => 'Thanh toán thất bại',
+                'content' => 'Thanh toán không thành công. Vui lòng kiểm tra lại tài khoản của bạn hoặc liên hệ với FangFangChoice để biết thêm chi tiết'
+            ]);
+        } else {
+            return view('dashboard.success');
+        }
     }
 
     public function orderManagement()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->get();
+        $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
 //        $total = OrderDetail::orderTotal($orders[0]['order_code'])->first();
         return view('dashboard.order-management', compact('orders'));
     }

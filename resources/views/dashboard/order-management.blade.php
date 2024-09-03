@@ -62,11 +62,9 @@
                                                                             </div>
                                                                             <div class="col-main">
                                                                                 <div class="price">
-                                                                                            <span>
-                                                                                            <?php
-                                                                                                echo 'Đang xử lý';
-                                                                                            ?>
-                                                                                            </span>
+                                                                                    <span>
+                                                                                        {{ $item->paymentStatusText($item->payment_status) }}
+                                                                                    </span>
                                                                                 </div>
                                                                                 <div class="price">
                                                                                     <span><span class="price-total-one-210-0-"> {{ number_format($item->total($item['order_code'])['total'], 0, ',', '.') }} </span>đ</span>

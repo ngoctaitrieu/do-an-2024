@@ -15,9 +15,14 @@
                         <div class="content">
                             <div class="result-cart">
                                 <div class="text">
-                                    <h1>Đặt hàng thành công</h1>
-                                    <p>Đơn hàng của bạn đã được đặt thành công, quá trình giao hàng sẽ được cập nhật liên
-                                        tục trên hệ thống, bạn vui lòng kiểm tra thường xuyên để nhận hàng sớm nhất có thể
+                                    <h1>@if(isset($title)) {{ $title }} @else Đặt hàng thành công @endif</h1>
+                                    <p>
+                                        @if(isset($content))
+                                            {{ $content }}
+                                        @else
+                                            Đơn hàng của bạn đã được đặt thành công, quá trình giao hàng sẽ được cập nhật liên
+                                            tục trên hệ thống, bạn vui lòng kiểm tra thường xuyên để nhận hàng sớm nhất có thể
+                                        @endif
                                     </p>
                                     <div class="bnt-cart">
                                         <button><img src="dist/images/re-cart-1.svg" alt="re-cart">Quay lại mua hàng</button>

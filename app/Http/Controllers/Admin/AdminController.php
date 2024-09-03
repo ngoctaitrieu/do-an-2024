@@ -124,4 +124,77 @@ class AdminController extends Controller
             return response()->json(['status' => 1]);
         }
     }
+
+    public function create()
+    {
+        $variants = Variant::all();
+        $category_sub = CategorySub::all();
+        return view('admin.product-create', compact('variants', 'category_sub'));
+    }
+
+    public function store(Request $request)
+    {
+        // Thêm sản phẩm
+        $product = Product::create([
+            'title' => $request['title'],
+            'slug' => $request['slug'],
+            'long_description' => $request['description'],
+            'price_old' => $request['price_old'],
+            'price' => $request['price'],
+            'category_sub_id' => $request['category_sub']
+        ]);
+
+        // Thêm product variant
+        foreach ($request['product_variant']['name'] as $key => $item) {
+            if(!$item || !$request['product_variant']['quantity'][$key]) {
+                continue;
+            }
+            ProductVariant::create([
+                'product_id' => $product['id'],
+                'variant_id' => $request['variants'],
+                'name' => $item,
+                'quantity' => $request['product_variant']['quantity'][$key]
+            ]);
+        }
+        // THêm product image
+        if($files = $request->file('images')) {
+            $images = [];
+            foreach ($files as $key => $file) {
+                $originName = $file->getClientOriginalName();
+                $fileName = pathinfo($originName, PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $fileName = $fileName . '_' . $key . '_' . time() . '.' . $extension;
+
+                $file->move(public_path('images'), $fileName);
+                $url = asset('images/' . $fileName);
+                // Cập nhật hình ảnh
+                ProductImage::create([
+                    'image_url' => $url,
+                    'product_id' => $product['id']
+                ]);
+            }
+        }
+        return redirect()->back()->with('status', 'Thêm mới sản phẩm thành công');
+    }
+
+    public function delete(Request $request)
+    {
+        $product = Product::find($request['product_id']);
+        if(!$product['id']) {
+            return response()->json([
+                'status' => 0,
+                'message' => 'Không tìm thấy sản phẩm cần xóa'
+            ]);
+        }
+        if($product->delete()) {
+            return response()->json([
+                'status' => 1,
+                'message' => 'Thành công'
+            ]);
+        }
+        return response()->json([
+            'status' => 0,
+            'message' => 'Đã có lỗi xảy ra. Vui lòng thử lại sau'
+        ]);
+    }
 }

@@ -14,6 +14,7 @@ class CategorySub extends Model
     protected $fillable = [
         'name',
         'slug',
+        'image',
         'category_id'
     ];
 

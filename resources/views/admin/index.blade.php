@@ -17,6 +17,7 @@
                                 <div class="content">
                                     <div class="title">
                                         <h1>Quản lý sản phẩm</h1>
+                                        <a href="{{ route('admin.product.create') }}" class="btn btn-primary mt-3">Thêm mới</a>
                                     </div>
                                     <table class="table table-striped">
                                         <thead>
@@ -38,9 +39,9 @@
                                                     <td><del>{{ number_format((int)$item['price_old'], 0, ',', '.') }}đ</del> <br> <span>{{ number_format((int)$item['price'], 0, ',', '.') }}đ</span></td>
                                                     <td>{{ \Illuminate\Support\Carbon::parse($item['created_at'])->format('d/m/Y H:i') }}</td>
                                                     <td>
-                                                        <button type="button" class="btn btn-primary">Edit</button>
+                                                        <a href="{{ route('admin.product.detail', ['slug' => $item['slug']]) }}" class="btn btn-primary">Edit</a>
 
-                                                        <button type="button" class="btn btn-danger">Delete</button>
+                                                        <button type="button" class="btn btn-danger delete-product" data-id="{{ $item['id'] }}">Delete</button>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -59,6 +60,45 @@
 {{--JS--}}
 @section('script')
     <script>
+        $('.delete-product').on('click', function () {
+            let product_id = $(this).attr('data-id');
+            let current = $(this);
+            Swal.fire({
+                title: "Xác nhận",
+                text: "Bạn có chắc muốn xóa sản phẩm này không?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Xác nhận",
+                cancelButtonText: "Hủy",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'post',
+                        dataType: 'json',
+                        cache: false,
+                        url: '{{ route('admin.product.delete') }}',
+                        data: {
+                            product_id : product_id,
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        beforeSend: function() {
 
+                        },
+                        success: function(response) {
+                            if(response.status == 1) {
+                                current.parents('tr').remove();
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    text: response.message,
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
     </script>
 @endsection

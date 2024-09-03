@@ -291,7 +291,7 @@
                            // localStorage.removeItem('cart');
                            // localStorage.removeItem('selectedItem');
                            // localStorage.removeItem('customerInformation');
-                           // showCartNumber();
+                           showCartNumber();
                                if(payment_method == 2) {
                                     window.location.href = response.payment_link;
                                } else {

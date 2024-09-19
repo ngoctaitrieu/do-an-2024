@@ -48,7 +48,15 @@
             </div>
             <div class="link-level-0">
                 <div class="main-link">
-                    <a href="#">
+                    <a href="{{ route('admin.reports.index') }}">
+                        {{--<span><img src="{{ asset('dist/images/i-1.svg') }}" alt="i-1"></span>--}}
+                        <span>Báo cáo, thống kê</span>
+                    </a>
+                </div>
+            </div>
+            <div class="link-level-0">
+                <div class="main-link">
+                    <a href="{{ route('dashboard.logout') }}">
                         <span><img src="{{ asset('dist/images/i-8.svg') }}" alt="i-8"></span>
                         <span>Đăng xuất</span>
                     </a>

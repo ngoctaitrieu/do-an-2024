@@ -1159,44 +1159,44 @@
                         <div class="swiper-slide">
                             <div class="item-prosedure">
                                 <div class="img">
-                                    <figure><img src="dist/images/prose-1.svg" alt="prose"></figure>
+                                    <figure><img src="dist/images/search-status.svg" alt="prose"></figure>
                                 </div>
                                 <div class="description">
-                                    <h3>Tìm kiếm sản phẩm</h3>
-                                    <p>Tìm Kiếm Từ Khoá Sản Phẩm Bạn Muốn Mua</p>
+                                    <h3>Thanh toán đơn hàng</h3>
+                                    <p>Thanh Toán Hoàn Toàn Hoặc Một Phần Giá Trị Đơn Hàng</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="item-prosedure">
                                 <div class="img">
-                                    <figure><img src="dist/images/prose-1.svg" alt="prose"></figure>
+                                    <figure><img src="dist/images/search-status-2.svg" alt="prose"></figure>
                                 </div>
                                 <div class="description">
-                                    <h3>Tìm kiếm sản phẩm</h3>
-                                    <p>Tìm Kiếm Từ Khoá Sản Phẩm Bạn Muốn Mua</p>
+                                    <h3>Tiếp nhận đơn hàng</h3>
+                                    <p>Chúng tôi tiếp nhận Và Xử Lý Đơn Hàng Của Bạn</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="item-prosedure">
                                 <div class="img">
-                                    <figure><img src="dist/images/prose-1.svg" alt="prose"></figure>
+                                    <figure><img src="dist/images/search-status-3.svg" alt="prose"></figure>
                                 </div>
                                 <div class="description">
-                                    <h3>Tìm kiếm sản phẩm</h3>
-                                    <p>Tìm Kiếm Từ Khoá Sản Phẩm Bạn Muốn Mua</p>
+                                    <h3>Đóng gói & vận chuyển</h3>
+                                    <p>Chúng tôi tiếp nhận Và Xử Lý Đơn Hàng Của Bạn</p>
                                 </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="item-prosedure">
                                 <div class="img">
-                                    <figure><img src="dist/images/prose-1.svg" alt="prose"></figure>
+                                    <figure><img src="dist/images/search-status-4.svg" alt="prose"></figure>
                                 </div>
                                 <div class="description">
-                                    <h3>Tìm kiếm sản phẩm</h3>
-                                    <p>Tìm Kiếm Từ Khoá Sản Phẩm Bạn Muốn Mua</p>
+                                    <h3>Thanh toán & nhận hàng</h3>
+                                    <p>Thanh Toán Phí Vận Chuyển & Nhận Hàng</p>
                                 </div>
                             </div>
                         </div>

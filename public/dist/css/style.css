@@ -3563,6 +3563,7 @@ main {
 }
 .ffc-detail-product .detai-product__content .single-thumnail .images-main {
   margin-bottom: 20px;
+  max-height: 430px;
 }
 .ffc-detail-product .detai-product__content .single-thumnail .images-main .item .sgl__img {
   width: 688px;
@@ -3588,6 +3589,9 @@ main {
   right: 0;
   bottom: 0;
   border-radius: 10px;
+}
+.ffc-detail-product .detai-product__content .single-thumnail .images-main .item img {
+  max-height: 410px;
 }
 .ffc-detail-product .detai-product__content .single-thumnail .images-thumnail .item-thumb {
   cursor: pointer;
@@ -9275,4 +9279,51 @@ main {
 }
 .dashboard-admin .main-content .variants-container .remove-variant-item, .dashboard-admin .main-content .variants-container .add-variant-item {
   cursor: pointer;
+}
+
+.dashboard-report .main-content .content .number-list {
+  display: flex;
+  font-size: 18px;
+  font-weight: 500;
+}
+.dashboard-report .main-content .content .number-list .number-item {
+  padding: 30px 40px;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.dashboard-report .main-content .content .number-list .number-item:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-right: 0;
+}
+.dashboard-report .main-content .content .number-list .number-item:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.dashboard-report .main-content .content .number-list .number-item .item-text {
+  margin-bottom: 8px;
+}
+.dashboard-report .main-content .content .number-list .number-item .item-number-price {
+  color: #85DB7F;
+}
+.dashboard-report .main-content .content .number-list .number-item .item-number-quantity {
+  color: #5389DB;
+}
+.dashboard-report .main-content .content .sort-container form {
+  text-align: right;
+}
+.dashboard-report .main-content .content .sort-container form input {
+  padding: 4px 8px;
+}
+.dashboard-report .main-content .content #chart {
+  margin-top: 50px;
+}
+.dashboard-report .main-content .content .hot-products {
+  margin-top: 30px;
+}
+.dashboard-report .main-content .content .hot-products .products .product img {
+  width: 150px;
 }/*# sourceMappingURL=style.css.map */

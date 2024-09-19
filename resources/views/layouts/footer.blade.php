@@ -88,7 +88,7 @@
                                     <img src="{{ asset('dist/images/sms.svg') }}" alt="mail">
                                     <input type="text" placeholder="Nhập email của bạn">
                                 </div>
-                                <button>Đăng ký</button>
+                                {{--<button>Đăng ký</button>--}}
                             </form>
                             <div class="social">
                                 <figure><img src="{{ asset('dist/images/bct.png') }}" alt="bct"></figure>
@@ -104,9 +104,9 @@
                 </div>
                 <div class="copy-right">
                     <div class="left">
-                        <p>@FangFangChoice 2023, All Rights Reserved. </p>
+                        <p>@FangFangChoice 2024, All Rights Reserved. </p>
                     </div>
-                    <div class="right"><span>Design by</span><a href="#">Wecan Group</a></div>
+                    {{--<div class="right"><span>Design by</span><a href="#">Wecan Group</a></div>--}}
                 </div>
             </div>
         </div>

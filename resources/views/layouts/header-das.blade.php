@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="dash-button">
-            <div class="dash-button__inner">
+            <div class="dash-button__inner d-none">
                 <button><img src="{{ asset('dist/images/dflash.svg') }}" alt="dflash">Săn deal</button>
             </div>
             <div class="cart">

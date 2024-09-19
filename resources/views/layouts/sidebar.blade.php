@@ -39,14 +39,14 @@
                     </a>
                 </div>
             </div>
-            <div class="link-level-0">
-                <div class="main-link">
-                    <a href="#">
-                        <span><img src="{{ asset('dist/images/i-5.svg') }}" alt="i-5"></span>
-                        <span>Mã giảm giá</span>
-                    </a>
-                </div>
-            </div>
+            {{--<div class="link-level-0">--}}
+                {{--<div class="main-link">--}}
+                    {{--<a href="#">--}}
+                        {{--<span><img src="{{ asset('dist/images/i-5.svg') }}" alt="i-5"></span>--}}
+                        {{--<span>Mã giảm giá</span>--}}
+                    {{--</a>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             {{--<div class="link-level-0">--}}
                 {{--<div class="main-link">--}}
                     {{--<a href="#">--}}
@@ -65,7 +65,7 @@
             {{--</div>--}}
             <div class="link-level-0">
                 <div class="main-link">
-                    <a href="#">
+                    <a href="{{ route('dashboard.logout') }}">
                         <span><img src="{{ asset('dist/images/i-8.svg') }}" alt="i-8"></span>
                         <span>Đăng xuất</span>
                     </a>

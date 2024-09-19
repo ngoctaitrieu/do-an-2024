@@ -22,4 +22,9 @@ class Category extends Model
     public function scopeGetCategoryBySlug($query, $slug) {
         return $query->where('slug', $slug);
     }
+
+    public function categorySub()
+    {
+        return $this->categories();
+    }
 }

@@ -102,4 +102,25 @@ class HomeController extends Controller
         return json_encode($html);
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request['keyword'];
+        $products = Product::where('title', 'like', '%' . $keyword . '%')->get();
+        return view('search', compact('products', 'keyword'));
+    }
+
+    public function about()
+    {
+        return view('about');
+    }
+
+    public function faq()
+    {
+        return view('faq');
+    }
+
+    public function support()
+    {
+        return view('support');
+    }
 }

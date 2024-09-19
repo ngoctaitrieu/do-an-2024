@@ -54,7 +54,9 @@ class ProductController extends Controller
 //        $product_variant_quantity = ProductVariantQuantity::where('product_id', $product_variant['product_id'])->where('variant_id', $product_variant['variant_id'])->get();
         // Đánh giá sản phẩm
 //        $product_reviews = $product->productReviews->sum('star');
-        return view('product-detail', compact('product', 'product_variant', 'variant', 'product_images'));
+        // Sản phẩm khác
+        $product_list = Product::whereNotIn('id', [$product['id']])->limit(6)->get();
+        return view('product-detail', compact('product', 'product_variant', 'variant', 'product_images', 'product_list'));
     }
 
     public function create(Request $request)

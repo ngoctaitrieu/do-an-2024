@@ -16,7 +16,7 @@
                             <div class="col-md-8">
                                 <div class="content">
                                     <div class="title">
-                                        <h1>Yêu thích</h1>
+                                        <h1>Tài khoản</h1>
                                     </div>
                                     <div class="form-content">
                                         <form action="">

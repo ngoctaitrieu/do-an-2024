@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CategorySubController;
 use App\Http\Controllers\Admin\VariantController;
 use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\ReportController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // Đăng ký
@@ -24,8 +25,13 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.login');
 // Lấy danh sách sản phẩm dựa trên category_id
 Route::get('/home/get', [HomeController::class, 'get'])->name('home.get');
 Route::get('/products/{slug}', [ProductController::class, 'detail'])->name('products.detail');
+Route::get('/search', [HomeController::class, 'search'])->name('home.search');
+Route::get('/about', [HomeController::class, 'about'])->name('home.about');
+Route::get('/faq', [HomeController::class, 'faq'])->name('home.faq');
+Route::get('/support', [HomeController::class, 'support'])->name('home.support');
 // Dashboard
 Route::middleware([\App\Http\Middleware\IsLogin::class])->group(function () {
+    Route::get('/logout', [DashboardController::class, 'logout'])->name('dashboard.logout');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/cart', [DashboardController::class, 'cart'])->name('dashboard.cart');
     Route::get('/confirm', [DashboardController::class, 'confirm'])->name('dashboard.confirm');
@@ -85,6 +91,8 @@ Route::middleware([\App\Http\Middleware\IsAdminLogin::class])->group(function ()
     Route::get('/admin/orders', [OrderController::class, 'index'])->name('admin.orders');
     Route::get('/admin/orders/edit/{order_code}', [OrderController::class, 'edit'])->name('admin.orders.edit');
     Route::post('/admin/orders/update/{order_code}', [OrderController::class, 'update'])->name('admin.orders.update');
+    // Báo cáo, thống kê
+    Route::get('/admin/reports', [ReportController::class, 'index'])->name('admin.reports.index');
 });
 // Hiển thị danh sách sản phẩm của một danh mục
 Route::get('/{category}/{category_sub}', [ProductController::class, 'index'])->name('products.index');

@@ -131,7 +131,7 @@
                                                             <div class="product__content__meta-info">
                                                                 <a href="{{ route('products.detail', $item->slug) }}">Mua ngay</a>
                                                                 <div class="bnt-info">
-                                                                    <button>
+                                                                    <button class="d-none">
                                                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                                                              xmlns="http://www.w3.org/2000/svg">
                                                                             <path d="M5.13901 1.16663L3.02734 3.28413"
